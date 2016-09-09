@@ -8,21 +8,21 @@ var get_previous_value = function(origin, cookie_name){
         var page    	= current_cookie.split('|')[1];
         if(page){
 			set_referrer_value(cookie_name, origin, current_page);
-			console.log('>>>>>>>>>>>>>>>>  ' + decodeURI( _value));
             return decodeURI( _value);
         } else {
 			set_referrer_value(cookie_name, origin, current_page);
 		}
-       
     } else {
         set_referrer_value(cookie_name, origin, current_page);
-		console.log('>>>>>>>>>>>>>>>>> Criado');
     }
 }
  
-var set_referrer_value = function(cookie_name, origin, current_page){
+var set_referrer_value = function(cookie_name, origin, current_page) {
+    var expires = new Date();
 	if(typeof cookie_name === "string"){
-		document.cookie = cookie_name + '=' + encodeURI(origin) + '|' + current_page + ';domain=.' + document.domain + ';path=/';
+		document.cookie = cookie_name + '=' + encodeURI(origin) + '|' + current_page +
+         ';expires=' + expires.setTime(expires.getTime() + 1800000) +
+         ';domain=.' + document.domain + ';path=/';
 	}
 } 
  
@@ -31,10 +31,10 @@ var get_cookie = function(cname){
     var ca = document.cookie.split(';');
     for(var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') {
+        while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length,c.length);
         }
     }
