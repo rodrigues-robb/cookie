@@ -15,7 +15,7 @@ var get_previous_value = function(origin, cookie_name){
     } else {
         set_referrer_value(cookie_name, origin, current_page);
     }
-}
+};
  
 var set_referrer_value = function(cookie_name, origin, current_page) {
     var expires = new Date();
@@ -24,9 +24,9 @@ var set_referrer_value = function(cookie_name, origin, current_page) {
          ';expires=' + expires.setTime(expires.getTime() + 1800000) +
          ';domain=.' + document.domain + ';path=/';
 	}
-} 
+};
  
-var get_cookie = function(cname){
+var get_cookie = function(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i < ca.length; i++) {
@@ -39,6 +39,6 @@ var get_cookie = function(cname){
         }
     }
     return "";
-}
+};
 
 get_previous_value(document.title, 'p_title');
